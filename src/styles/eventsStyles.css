@@ -1,0 +1,162 @@
+/* eventsStyles.css */
+
+/* Переменные цветов */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --info-color: #17a2b8;
+}
+
+/* Основные стили */
+.facilities-page {
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+}
+
+/* Добавленные стили для "Подробнее" */
+.facility-card .details-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.facility-card .details-link:hover {
+  color: var(--secondary-color);
+}
+
+/* Добавленный стиль для "Дополнительная информация" */
+.facility-card .additional-info {
+  color: var(--info-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-black {
+  color: black;
+}
+
+.text-gray-400 {
+  color: #ccc;
+}
+
+.text-gray-600 {
+  color: #6c757d;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.filters input {
+  width: 45%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+}
+
+.category-filter {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  margin-right: 10px;
+}
+
+.sort-button,
+.filter-button {
+  cursor: pointer;
+  padding: 8px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+}
+
+.sort-button:hover,
+.filter-button:hover {
+  background-color: #e0e0e0;
+}
+
+.sort-button svg,
+.filter-button svg {
+  font-size: 20px;
+}
+
+.facilities-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.facility-card {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+}
+
+.facility-card h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.facility-card p {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  color: var(--secondary-color);
+}
+
+.facility-card p svg {
+  margin-right: 5px;
+  color: var(--info-color);
+}
+
+/* Добавленные стили для контейнера страницы и футера */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.footer {
+  margin-top: auto;
+}

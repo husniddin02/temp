@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import {
@@ -11,40 +11,46 @@ import {
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../../../public/img/logo.png";
 
-export function Navbar({ routes, action }) {
-  const [openNav, setOpenNav] = React.useState(false);
+const navigation = [
+  { path: "/events", label: "Мероприятии" },
+  { path: "/sport-objects", label: "Спортобъекты" },
+  { path: "/news", label: "Новости" },
+];
 
-  const navList = (
-    <ul className="mb-4 mt-2 flex flex-col gap-2 text-inherit lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      <Typography as="li" variant="small" color="inherit" className="capitalize">
-        <Link to="/events" className="flex items-center gap-1 p-1 font-bold">
-          Мероприятии
-        </Link>
-      </Typography>
-
-      <Typography as="li" variant="small" color="inherit" className="capitalize">
-        <Link to="/objects" className="flex items-center gap-1 p-1 font-bold">
-          Спортобъекты
-        </Link>
-      </Typography>
-
-      <Typography as="li" variant="small" color="inherit" className="capitalize">
-        <Link to="/news" className="flex items-center gap-1 p-1 font-bold">
-          Новости
-        </Link>
-      </Typography>
+function NavList({ className }) {
+  return (
+    <ul className={className}>
+      {navigation.map((item) => (
+        <Typography
+          as="li"
+          variant="small"
+          color="inherit"
+          className="capitalize"
+          key={item.path}
+        >
+          <Link to={item.path} className="flex items-center gap-1 p-1 font-bold">
+            {item.label}
+          </Link>
+        </Typography>
+      ))}
     </ul>
   );
+}
+
+export function Navbar({ routes, action }) {
+  const [openNav, setOpenNav] = useState(false);
 
   return (
-    <MTNavbar color="transparent" className="p-3">
+    <MTNavbar color="transparent" className="p-3 relative">
       <div className="container mx-auto flex items-center justify-between text-white">
         <Link to="/" className="flex items-center">
           <img src={logo} alt="Sport Platform" className="h-8 w-auto" />
-          <span className="text-lg font-semibold ml-2">Sport Platform</span>
+          <span className="text-lg font-semibold ml-2">Чемпион</span>
         </Link>
 
-        <div className="hidden lg:block">{navList}</div>
+        <div className="hidden lg:block">
+          <NavList className="mb-4 mt-2 flex flex-col gap-2 text-black lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6" />
+        </div>
 
         <div className="hidden gap-2 lg:flex">
           <Link to="/sign-in">
@@ -79,7 +85,7 @@ export function Navbar({ routes, action }) {
 
       <Collapse open={openNav}>
         <div className="container mx-auto px-4 py-2 bg-white text-blue-gray-900">
-          {navList}
+          <NavList className="mb-4 mt-2 flex flex-col gap-2 text-black lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6" />
           <Link to="/sign-in">
             <Button variant="text" size="sm" fullWidth>
               Вход

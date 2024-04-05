@@ -1,12 +1,46 @@
+import { useState, useEffect } from "react";
 import { Avatar, Typography, Button } from "@material-tailwind/react";
-import {
-  MapPinIcon,
-  BriefcaseIcon,
-  BuildingLibraryIcon,
-} from "@heroicons/react/24/solid";
+import { MapPinIcon, BriefcaseIcon, BuildingLibraryIcon } from "@heroicons/react/24/solid";
 import { Footer } from "@/widgets/layout";
+import axios from "axios";
 
 export function Profile() {
+  const [userProfile, setUserProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function fetchUserProfile() {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/v1/user/profile/", {
+          headers: {
+            Authorization: `Bearer 73a2fe4176796cff8a2c8416e4deb153028ba08d`
+          }
+        });
+        setUserProfile(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+        setError("An error occurred while fetching user profile.");
+        setLoading(false);
+      }
+    }
+
+    fetchUserProfile();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!userProfile) {
+    return <div>No user profile found.</div>;
+  }
+
   return (
     <>
       <section className="relative block h-[50vh]">
@@ -20,7 +54,7 @@ export function Profile() {
               <div className="relative flex gap-6 items-start">
                 <div className="-mt-20 w-40">
                   <Avatar
-                    src="/img/team-5.png"
+                    src={userProfile.avatar}
                     alt="Profile picture"
                     variant="circular"
                     className="h-full w-full"
@@ -28,14 +62,14 @@ export function Profile() {
                 </div>
                 <div className="flex flex-col mt-2">
                   <Typography variant="h4" color="blue-gray">
-                    Jenna Stones
+                    {userProfile.full_name}
                   </Typography>
-                  <Typography variant="paragraph" color="gray" className="!mt-0 font-normal">jena@mail.com</Typography>
+                  <Typography variant="paragraph" color="gray" className="!mt-0 font-normal">{userProfile.email}</Typography>
                 </div>
               </div>
 
               <div className="mt-10 mb-10 flex lg:flex-col justify-between items-center lg:justify-end lg:mb-0 lg:px-4 flex-wrap lg:-mt-5">
-                <Button className="bg-gray-900 w-fit lg:ml-auto">Conntect</Button>
+                <Button className="bg-gray-900 w-fit lg:ml-auto">Edit Profile</Button>
                 <div className="flex justify-start py-4 pt-8 lg:pt-4">
                   <div className="mr-4 p-3 text-center">
                     <Typography
@@ -43,7 +77,7 @@ export function Profile() {
                       color="blue-gray"
                       className="font-bold uppercase"
                     >
-                      22
+                      {userProfile.friends_count}
                     </Typography>
                     <Typography
                       variant="small"
@@ -58,7 +92,7 @@ export function Profile() {
                       color="blue-gray"
                       className="font-bold uppercase"
                     >
-                      10
+                      {userProfile.photos_count}
                     </Typography>
                     <Typography
                       variant="small"
@@ -73,7 +107,7 @@ export function Profile() {
                       color="blue-gray"
                       className="font-bold uppercase"
                     >
-                      89
+                      {userProfile.comments_count}
                     </Typography>
                     <Typography
                       variant="small"
@@ -83,50 +117,42 @@ export function Profile() {
                     </Typography>
                   </div>
                 </div>
-
               </div>
             </div>
             <div className="-mt-4 container space-y-2">
               <div className="flex items-center gap-2">
                 <MapPinIcon className="-mt-px h-4 w-4 text-blue-gray-500" />
                 <Typography className="font-medium text-blue-gray-500">
-                  Los Angeles, California
+                  {userProfile.location}
                 </Typography>
               </div>
               <div className="flex items-center gap-2">
                 <BriefcaseIcon className="-mt-px h-4 w-4 text-blue-gray-500" />
                 <Typography className="font-medium text-blue-gray-500">
-                  Solution Manager - Creative Tim Officer
+                  {userProfile.job_title}
                 </Typography>
               </div>
               <div className="flex items-center gap-2">
                 <BuildingLibraryIcon className="-mt-px h-4 w-4 text-blue-gray-500" />
                 <Typography className="font-medium text-blue-gray-500">
-                  University of Computer Science
+                  {userProfile.university}
                 </Typography>
               </div>
             </div>
             <div className="mb-10 py-6">
               <div className="flex w-full flex-col items-start lg:w-1/2">
                 <Typography className="mb-6 font-normal text-blue-gray-500">
-                  An artist of considerable range, Jenna the name taken by
-                  Melbourne-raised, Brooklyn-based Nick Murphy writes,
-                  performs and records all of his own music, giving it a
-                  warm, intimate feel with a solid groove structure. An
-                  artist of considerable range.
+                  {userProfile.bio}
                 </Typography>
                 <Button variant="text">Show more</Button>
               </div>
             </div>
           </div>
-
-
         </div>
       </section>
       <div className="bg-white">
         <Footer />
       </div>
-
     </>
   );
 }

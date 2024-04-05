@@ -5,7 +5,7 @@ const year = new Date().getFullYear();
 
 export function Footer({ title, description, socials, menus, copyright }) {
   return (
-    <footer className="relative px-4 pt-8 pb-6">
+    <footer className="relative px-4 pt-8 pb-6 bg-white bg-opacity-70 text-black">
       <div className="container mx-auto">
         <div className="flex flex-wrap pt-6 text-center lg:text-left">
           <div className="w-full px-4 lg:w-6/12">
@@ -67,9 +67,9 @@ export function Footer({ title, description, socials, menus, copyright }) {
           <div className="mx-auto w-full px-4 text-center">
             <Typography
               variant="small"
-              className="font-normal text-blue-gray-500"
+              className="font-normal text-black"
             >
-              {copyright}
+              &copy; {year}
             </Typography>
           </div>
         </div>
@@ -84,24 +84,19 @@ Footer.defaultProps = {
     "Мы в соц сети",
   socials: [
     {
-      color: "gray",
-      name: "twitter",
-      path: "https://www.twitter.com",
-    },
-    {
-      color: "gray",
+      color: "red",
       name: "youtube",
       path: "https://www.youtube.com/",
     },
     {
-      color: "gray",
+      color: "pink",
       name: "instagram",
       path: "https://www.instagram.com/",
     },
     {
       color: "black",
       name: "github",
-      path: "https://github.com/creativetimofficial",
+      path: "https://github.com/",
     },
   ],
   menus: [
@@ -118,7 +113,7 @@ Footer.defaultProps = {
   ],
   copyright: (
     <>
-      Copyright © {year}  
+      &copy; {year}
       .
     </>
   ),

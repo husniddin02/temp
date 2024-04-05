@@ -1,0 +1,73 @@
+/* Фоновый градиент */
+.bg-gradient-to-br {
+    background: linear-gradient(to bottom right, #ED64A6, #7952B3);
+  }
+  
+  /* Основной контейнер */
+  section {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  /* Форма */
+  .form-container {
+    margin-top: 6rem;
+    width: 80%;
+    max-width: 36rem;
+  }
+  
+  /* Заголовок формы */
+  .form-container .form-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #1E293B; /* Цвет текста */
+  }
+  
+  /* Подзаголовок формы */
+  .form-container .form-subtitle {
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: #4B5563; /* Цвет текста */
+  }
+  
+  /* Поля ввода */
+  .input-field {
+    margin-bottom: 1rem;
+  }
+  
+  /* Лейбл для полей ввода */
+  .input-label {
+    font-size: 0.875rem;
+    color: #6B7280; /* Цвет текста лейбла */
+  }
+  
+  /* Кнопка Войти */
+  .submit-button {
+    margin-top: 1rem;
+  }
+  
+  /* Ссылки и текст под формой */
+  .bottom-text {
+    font-size: 0.875rem;
+    color: #6B7280; /* Цвет текста */
+  }
+  
+  /* Ссылка Забыли пароль */
+  .forgot-password-link {
+    color: #2563EB; /* Цвет ссылки */
+  }
+  
+  /* Кнопка Войти через Google */
+  .google-button {
+    background-color: #FFFFFF; /* Цвет фона */
+    color: #1E293B; /* Цвет текста */
+    border-color: #D1D5DB; /* Цвет рамки */
+  }
+  
+  /* Отключенное состояние для кнопки */
+  .disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  

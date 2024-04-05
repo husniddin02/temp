@@ -1,3 +1,5 @@
+// sign-in.jsx
+
 import React, { useState } from 'react';
 import { Input, Checkbox, Button, Typography } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
@@ -95,7 +97,7 @@ function SignIn() {
             }
             containerProps={{ className: "-ml-2.5" }}
           />
-          <Button type="submit" className={`mt-6 ${isFormValid ? '' : 'disabled:opacity-50'}`} fullWidth disabled={!isFormValid}>
+          <Button type="submit" className={`mt-6 ${isFormValid ? '' : 'disabled:opacity-50'}`} fullWidth>
             Войти
           </Button>
 
